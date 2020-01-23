@@ -11,9 +11,8 @@ home directory.
 
 ### macOS
 
-These are needed if you want bash-completion.
-
-    brew install bash bash-completion@2
+    brew tap lithammer/lithammer
+    brew install journal
 
 ## Configuration
 
