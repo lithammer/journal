@@ -1,0 +1,32 @@
+set laststatus=0
+set title titlestring=Journal:\ %{expand('%:t:r')}
+set foldenable foldmethod=marker foldlevelstart=0
+set expandtab shiftwidth=4 tabstop=4 softtabstop=4
+set conceallevel=2
+
+let g:markdown_folding = 1
+
+" Use <C-L> to clear the highlighting of :set hlsearch.
+if maparg('<C-L>', 'n') ==# ''
+  nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
+endif
+
+if !exists(':DiffOrig')
+  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
+        \ | wincmd p | diffthis
+endif
+
+augroup restore_cursor_position
+  autocmd!
+  autocmd BufReadPost *
+        \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
+        \ |   exe "normal! g`\""
+        \ | endif
+augroup END
+
+highlight Folded ctermbg=NONE guibg=NONE
+highlight SpellBad ctermbg=NONE cterm=undercurl gui=undercurl guisp=Red
+highlight SpellCap ctermbg=NONE cterm=undercurl gui=undercurl guisp=Blue
+highlight SpellRare ctermbg=NONE cterm=undercurl gui=undercurl guisp=Magenta
+highlight SpellLocal ctermbg=NONE cterm=undercurl gui=undercurl guisp=Cyan
+highlight markdownCodeBlock ctermfg=Grey

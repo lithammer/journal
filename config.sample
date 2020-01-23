@@ -1,0 +1,2 @@
+JOURNAL_DATA="$HOME/Dropbox/Journal"
+JOURNAL_EDITOR="$EDITOR -u $CONFIG_HOME/vimrc -n"

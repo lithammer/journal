@@ -1,0 +1,35 @@
+=pod
+
+=head1 NAME
+
+B<journal> - A simple journal tool for the command-line
+
+=head1 SYNOPSIS
+
+B<journal> [B<-hlr>] [I<journal>]
+
+=head1 DESCRIPTION
+
+Edit and list markdown based journal files with convenient tab-completion.
+
+=head1 OPTIONS
+
+=over
+
+=item B<-h>
+
+Show help message.
+
+=item B<-l>
+
+List available journals.
+
+=item B<-r>=I<journal>
+
+Remove a journal file.
+
+=back
+
+=head1 LICENSE
+
+MIT
