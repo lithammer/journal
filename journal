@@ -10,6 +10,8 @@ DATA_HOME="${XDG_DATA_HOME:=$HOME/.local/share}/journal"
 
 : "${JOURNAL_DATA:=$DATA_HOME}"
 : "${JOURNAL_EDITOR:=$EDITOR}"
+: "${JOURNAL_EDITOR:=$VISUAL}"
+: "${JOURNAL_EDITOR:=vim}"
 
 help() {
 cat <<EOF
