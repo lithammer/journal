@@ -1,7 +1,7 @@
 XDG_CONFIG_HOME ?= $(HOME)/.config
 XDG_DATA_HOME ?= $(HOME)/.local/share
 
-BIN_DIR ?= $(HOME)/bin
+BIN_DIR ?= $(HOME)/.local/bin
 # https://github.com/scop/bash-completion/blob/master/README.md#faq
 BASH_COMPLETION_USER_DIR ?= $(XDG_DATA_HOME)/bash-completion
 ZSH ?= $(HOME)/.zsh
