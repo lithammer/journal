@@ -14,42 +14,54 @@ DATA_HOME="${XDG_DATA_HOME:=$HOME/.local/share}/journal"
 : "${JOURNAL_EDITOR:=vim}"
 
 help() {
-cat <<EOF
-Usage: ${0##*/} [-h] [-l] [-r JOURNAL] [JOURNAL]
+	cat <<-EOF
+		Usage: ${0##*/} [-h] [-l] [-r JOURNAL] [JOURNAL]
 
-  -h display this help and exit
-  -l list journals
-  -r remove journal
-EOF
+		  -h display this help and exit
+		  -l list journals
+		  -r remove journal
+	EOF
 }
 
 usage() {
-    help | head -1
+	help | head -1
 }
 
 list_journals() {
-    find -s "$JOURNAL_DATA" -depth 1 -type f -exec basename -- {} .md \;
+	find -s "$JOURNAL_DATA" -depth 1 -type f -exec basename -- {} .md \;
 }
 
 remove() {
-    rm -i "$JOURNAL_DATA/$1.md"
+	rm -i "$JOURNAL_DATA/$1.md"
 }
 
 while getopts "hlr:" opt; do
-    case "$opt" in
-        h) help; exit 0 ;;
-        l) list_journals; exit 0 ;;
-        r) remove "$OPTARG"; exit $? ;;
-        *) usage; exit 1 ;;
-    esac
+	case "$opt" in
+	h)
+		help
+		exit 0
+		;;
+	l)
+		list_journals
+		exit 0
+		;;
+	r)
+		remove "$OPTARG"
+		exit $?
+		;;
+	*)
+		usage
+		exit 1
+		;;
+	esac
 done
 
-shift $((OPTIND-1))
+shift $((OPTIND - 1))
 
 # List journals if no options/arguments where passed in.
 if [ -z "$1" ]; then
-    list_journals
-    exit 0
+	list_journals
+	exit 0
 fi
 
 [ -d "$JOURNAL_DATA" ] || mkdir -p "$JOURNAL_DATA"
